@@ -21,18 +21,18 @@ class zookeeper {
 
   # Config Files
 
-  file { "${zookeeper::config::configdir}/defaults":
-    source  => template('defaults'),
+  file { "${zookeeper::config::configdir}/zoo.cfg":
+    content => template('zookeeper/zoo.cfg'),
     require => File[$zookeeper::config::configdir],
   }
 
   file { "${zookeeper::config::configdir}/defaults":
-    source  => template('defaults'),
+    content => template('zookeeper/defaults'),
     require => File[$zookeeper::config::configdir],
   }
 
   file { "${zookeeper::config::configdir}/default_log4j_properties":
-    source  => template('default_log4j_properties'),
+    content => template('zookeeper/default_log4j_properties'),
     require => File[$zookeeper::config::configdir],
   }
 
