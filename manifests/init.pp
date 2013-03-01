@@ -16,7 +16,12 @@ class zookeeper {
   }
 
   package { 'boxen/brews/zookeeper':
-    ensure  => '3.4.5-boxen1',
+    ensure => $zookeeper::config::version,
+    require => [
+      File["${zookeeper::config::configdir}/zoo.cfg"],
+      File["${zookeeper::config::configdir}/defaults"],
+      File["${zookeeper::config::configdir}/default_log4j_properties"],
+    ],
   }
 
   # Config Files
