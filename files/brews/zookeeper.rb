@@ -7,6 +7,8 @@ class Zookeeper < Formula
 
   head 'http://svn.apache.org/repos/asf/zookeeper/trunk'
 
+  version '3.4.5-boxen1'
+
   if build.head?
     depends_on :automake
     depends_on :libtool
