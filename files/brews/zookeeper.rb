@@ -83,12 +83,6 @@ class Zookeeper < Formula
       libexec.install Dir['*.jar']
     end
 
-    # Create necessary directories
-    bin.mkpath
-    (etc+'zookeeper').mkpath
-    (var+'log/zookeeper').mkpath
-    (var+'run/zookeeper/data').mkpath
-
     # Install shim scripts to bin
     Dir["#{libexec}/bin/*.sh"].map { |p| Pathname.new p }.each { |path|
       next if path == libexec+'bin/zkEnv.sh'
