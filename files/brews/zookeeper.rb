@@ -91,6 +91,5 @@ class Zookeeper < Formula
       (bin+bin_name).write shim_script(script_name)
     }
 
-    end
   end
 end
