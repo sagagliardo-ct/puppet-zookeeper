@@ -27,23 +27,6 @@ class Zookeeper < Formula
     EOS
   end
 
-  def default_zk_env
-    <<-EOS.undent
-      export ZOOCFGDIR="#{etc}/zookeeper"
-    EOS
-  end
-
-  def default_log4j_properties
-    <<-EOS.undent
-      log4j.rootCategory=WARN, zklog
-      log4j.appender.zklog = org.apache.log4j.FileAppender
-      log4j.appender.zklog.File = #{var}/log/zookeeper/zookeeper.log
-      log4j.appender.zklog.Append = true
-      log4j.appender.zklog.layout = org.apache.log4j.PatternLayout
-      log4j.appender.zklog.layout.ConversionPattern = %d{yyyy-MM-dd HH:mm:ss} %c{1} [%p] %m%n
-    EOS
-  end
-
   def install
     # Don't try to build extensions for PPC
     if Hardware.is_32_bit?
@@ -114,17 +97,6 @@ class Zookeeper < Formula
       (bin+bin_name).write shim_script(script_name)
     }
 
-    # Install default config files
-    defaults = etc/'zookeeper/defaults'
-    defaults.write(default_zk_env) unless defaults.exist?
-
-    log4j_properties = etc/'zookeeper/log4j.properties'
-    log4j_properties.write(default_log4j_properties) unless log4j_properties.exist?
-
-    unless (etc/'zookeeper/zoo.cfg').exist?
-      inreplace 'conf/zoo_sample.cfg',
-                /^dataDir=.*/, "dataDir=#{var}/run/zookeeper/data"
-      (etc/'zookeeper').install 'conf/zoo_sample.cfg'
     end
   end
 end
