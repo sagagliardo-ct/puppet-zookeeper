@@ -58,6 +58,10 @@ class zookeeper {
 
   service { 'dev.zookeeper':
     ensure  => running,
+    require => [
+      File['/Library/LaunchDaemons/dev.zookeeper.plist'],
+      Package['boxen/brews/zookeeper'],
+    ],
   }
 
 }
