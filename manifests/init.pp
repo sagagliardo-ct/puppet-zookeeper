@@ -47,4 +47,17 @@ class zookeeper {
   zookeeper::shim { "zkCli": }
   zookeeper::shim { "zkCleanup": }
 
+  # Fire up our service
+
+  file { '/Library/LaunchDaemons/dev.zookeeper.plist':
+    content => template('zookeeper/dev.zookeeper.plist.erb'),
+    group   => 'wheel',
+    owner   => 'root',
+    notify  => Service['dev.zookeeper'],
+  }
+
+  service { 'dev.zookeeper':
+    ensure  => running,
+  }
+
 }

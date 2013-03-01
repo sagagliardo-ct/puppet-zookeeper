@@ -6,6 +6,9 @@ class zookeeper::config {
   $configdir  = "${boxen::config::configdir}/zookeeper"
   $datadir    = "${boxen::config::datadir}/zookeeper"
   $logdir     = "${boxen::config::logdir}/zookeeper"
+
+  $executable = "${boxen::config::homebrewdir}/bin/zkServer"
+
   $logerror   = "${logdir}/error.log"
   $port       = 12181
 }
