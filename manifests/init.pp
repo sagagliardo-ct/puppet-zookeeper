@@ -41,4 +41,10 @@ class zookeeper {
     require => File[$zookeeper::config::configdir],
   }
 
+  # Shims for shell commands
+
+  zookeeper::shim { "zkServer": }
+  zookeeper::shim { "zkCli": }
+  zookeeper::shim { "zkCleanup": }
+
 }
