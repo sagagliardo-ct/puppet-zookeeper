@@ -20,7 +20,7 @@ class zookeeper {
     require => [
       File["${zookeeper::config::configdir}/zoo.cfg"],
       File["${zookeeper::config::configdir}/defaults"],
-      File["${zookeeper::config::configdir}/default_log4j_properties"],
+      File["${zookeeper::config::configdir}/log4j.properties"],
     ],
   }
 
@@ -53,15 +53,12 @@ class zookeeper {
     content => template('zookeeper/dev.zookeeper.plist.erb'),
     group   => 'wheel',
     owner   => 'root',
+    require => Package['boxen/brews/zookeeper'],
     notify  => Service['dev.zookeeper'],
   }
 
   service { 'dev.zookeeper':
     ensure  => running,
-    require => [
-      File['/Library/LaunchDaemons/dev.zookeeper.plist'],
-      Package['boxen/brews/zookeeper'],
-    ],
   }
 
 }
