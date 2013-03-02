@@ -36,7 +36,7 @@ class zookeeper {
     require => File[$zookeeper::config::configdir],
   }
 
-  file { "${zookeeper::config::configdir}/default_log4j_properties":
+  file { "${zookeeper::config::configdir}/log4j.properties":
     content => template('zookeeper/default_log4j_properties'),
     require => File[$zookeeper::config::configdir],
   }
