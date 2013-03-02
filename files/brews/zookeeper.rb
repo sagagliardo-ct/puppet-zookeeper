@@ -18,15 +18,6 @@ class Zookeeper < Formula
   option "perl",   "Build Perl bindings."
   option "python", "Build Python bindings."
 
-  def shim_script target
-    <<-EOS.undent
-      #!/usr/bin/env bash
-      . "#{etc}/zookeeper/defaults"
-      cd "#{libexec}/bin"
-      ./#{target} "$@"
-    EOS
-  end
-
   def install
     # Don't try to build extensions for PPC
     if Hardware.is_32_bit?
