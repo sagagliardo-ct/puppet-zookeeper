@@ -19,7 +19,7 @@ describe 'zookeeper' do
 
   it { should contain_file("/opt/boxen/config/zookeeper/zoo.cfg") }
   it { should contain_file("/opt/boxen/config/zookeeper/defaults") }
-  it { should contain_file("/opt/boxen/config/zookeeper/default_log4j_properties") }
+  it { should contain_file("/opt/boxen/config/zookeeper/log4j.properties") }
 
   it { should contain_zookeeper__shim('zkServer') }
   it { should contain_zookeeper__shim('zkCli') }
