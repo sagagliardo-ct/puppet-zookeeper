@@ -14,7 +14,6 @@ class Zookeeper < Formula
     depends_on :libtool
   end
 
-  option "c",      "Build C bindings."
   option "perl",   "Build Perl bindings."
   option "python", "Build Python bindings."
 
@@ -37,7 +36,6 @@ class Zookeeper < Formula
 
     build_python = build.include? "python"
     build_perl = build.include? "perl"
-    build_c = build_python || build_perl || build.include?("c")
 
     # Build & install C libraries.
     cd "src/c" do
@@ -45,7 +43,7 @@ class Zookeeper < Formula
                             "--prefix=#{prefix}",
                             "--without-cppunit"
       system "make install"
-    end if build_c
+    end
 
     # Install Python bindings
     cd "src/contrib/zkpython" do
