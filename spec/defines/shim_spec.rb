@@ -4,7 +4,7 @@ describe 'zookeeper::shim' do
   let(:facts) do
     {
       :boxen_home => '/opt/boxen',
-      :luser => 'testuser',
+      :boxen_user => 'testuser',
     }
   end
   let(:title) { 'name' }

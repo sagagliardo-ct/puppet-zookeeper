@@ -8,7 +8,7 @@ define zookeeper::shim() {
   file { "${boxen::config::homebrewdir}/bin/${name}":
     content => template("zookeeper/shim_script"),
     mode    => 0755,
-    owner   => $::luser,
+    owner   => $::boxen_user,
     group   => staff,
     require => Package["boxen/brews/zookeeper"]
   }
