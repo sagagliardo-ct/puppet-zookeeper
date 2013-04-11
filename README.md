@@ -1,5 +1,7 @@
 # Zookeeper Puppet Module for Boxen
 
+[![Build Status](https://travis-ci.org/boxen/puppet-zookeeper.png)](https://travis-ci.org/boxen/puppet-zookeeper)
+
 [Apache Zookeeper](http://zookeeper.apache.org/) is a centralized service for maintaining configuration information, naming, providing distributed synchronization, and providing group services.
 
 ## Usage
