@@ -1,4 +1,4 @@
-# Public: Config parameters for Beanstalk
+# Public: Config parameters for Zookeeper
 #
 class zookeeper::config {
   require boxen::config
