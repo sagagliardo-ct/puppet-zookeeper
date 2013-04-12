@@ -1,3 +1,5 @@
+# Public: Config parameters for Beanstalk
+#
 class zookeeper::config {
   require boxen::config
 

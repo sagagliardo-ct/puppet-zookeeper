@@ -1,3 +1,9 @@
+# Public: Install Zookeeper and run as a persistent service
+#
+# Examples
+#
+#   include zookeeper
+#
 class zookeeper {
   include zookeeper::config
   include homebrew
@@ -12,11 +18,11 @@ class zookeeper {
 
   homebrew::formula { 'zookeeper':
     source => 'puppet:///modules/zookeeper/brews/zookeeper.rb',
-    before => Package['boxen/brews/zookeeper'] ;
+    before => Package['boxen/brews/zookeeper'],
   }
 
   package { 'boxen/brews/zookeeper':
-    ensure => $zookeeper::config::version,
+    ensure  => $zookeeper::config::version,
     require => [
       File["${zookeeper::config::configdir}/zoo.cfg"],
       File["${zookeeper::config::configdir}/defaults"],
@@ -43,9 +49,9 @@ class zookeeper {
 
   # Shims for shell commands
 
-  zookeeper::shim { "zkServer": }
-  zookeeper::shim { "zkCli": }
-  zookeeper::shim { "zkCleanup": }
+  zookeeper::shim { 'zkServer': }
+  zookeeper::shim { 'zkCli': }
+  zookeeper::shim { 'zkCleanup': }
 
   # Fire up our service
 

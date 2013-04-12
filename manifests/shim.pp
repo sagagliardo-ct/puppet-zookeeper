@@ -6,10 +6,10 @@ define zookeeper::shim() {
   $libexec = "${boxen::config::homebrewdir}/Cellar/zookeeper/${zookeeper::config::version}/libexec"
 
   file { "${boxen::config::homebrewdir}/bin/${name}":
-    content => template("zookeeper/shim_script"),
-    mode    => 0755,
+    content => template('zookeeper/shim_script'),
+    mode    => '0755',
     owner   => $::boxen_user,
     group   => staff,
-    require => Package["boxen/brews/zookeeper"]
+    require => Package['boxen/brews/zookeeper']
   }
 }
