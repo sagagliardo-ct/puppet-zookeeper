@@ -2,12 +2,12 @@ require 'formula'
 
 class Zookeeper < Formula
   homepage 'http://zookeeper.apache.org/'
-  url 'http://www.apache.org/dyn/closer.cgi?path=zookeeper/zookeeper-3.4.5/zookeeper-3.4.5.tar.gz'
-  sha1 'fd921575e02478909557034ea922de871926efc7'
+  url 'http://www.apache.org/dyn/closer.cgi?path=zookeeper/zookeeper-3.4.6/zookeeper-3.4.6.tar.gz'
+  sha1 '2a9e53f5990dfe0965834a525fbcad226bf93474'
 
   head 'http://svn.apache.org/repos/asf/zookeeper/trunk'
 
-  version '3.4.5-boxen1'
+  version '3.4.6-boxen1'
 
   if build.head?
     depends_on :automake
