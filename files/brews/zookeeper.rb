@@ -7,7 +7,7 @@ class Zookeeper < Formula
 
   head 'http://svn.apache.org/repos/asf/zookeeper/trunk'
 
-  version '3.4.6-boxen1'
+  version '3.4.6-boxen2'
 
   if build.head?
     depends_on :automake
@@ -16,6 +16,16 @@ class Zookeeper < Formula
 
   option "perl",   "Build Perl bindings."
   option "python", "Build Python bindings."
+  
+  patch do
+    # Apply patches[1] from the 3.4 branch of the ZooKeeper repo, as of 2014-10-24. This is necessary on
+    # OS X Yosemite, where ZooKeeper fails to compile as of the release version because of ZOOKEEPER-2049[2]
+    #
+    # [1] https://github.com/apache/zookeeper/compare/release-3.4.6...5786dc9d74d1d4c64fabd618f1fc45494447289d
+    # [2] https://issues.apache.org/jira/browse/ZOOKEEPER-2049
+    url "https://github.com/apache/zookeeper/compare/release-3.4.6...5786dc9d74d1d4c64fabd618f1fc45494447289d.patch"
+    sha1 "9c4c41736d90c0596f5d14ab3e77c4f96d173436"
+  end
 
   def install
     # Don't try to build extensions for PPC
