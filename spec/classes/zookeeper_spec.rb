@@ -11,7 +11,7 @@ describe 'zookeeper' do
   it { should include_class('homebrew') }
   it { should include_class('zookeeper::config') }
   it { should contain_homebrew__formula('zookeeper') }
-  it { should contain_package('boxen/brews/zookeeper') }
+  it { should contain_package('zookeeper') }
 
   it { should contain_file("/opt/boxen/config/zookeeper") }
   it { should contain_file("/opt/boxen/data/zookeeper") }

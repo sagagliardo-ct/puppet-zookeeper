@@ -17,7 +17,10 @@ class zookeeper {
   }
 
   package { 'boxen/brews/zookeeper':
-    name => 'zookeeper',
+    ensure => absent,
+  }
+  
+  package { 'zookeeper':
     ensure  => $zookeeper::config::version,
     require => [
       File["${zookeeper::config::configdir}/zoo.cfg"],
@@ -59,7 +62,7 @@ class zookeeper {
     content => template('zookeeper/dev.zookeeper.plist.erb'),
     group   => 'wheel',
     owner   => 'root',
-    require => Package['boxen/brews/zookeeper'],
+    require => Package['zookeeper'],
     notify  => Service['dev.zookeeper'],
   }
 
