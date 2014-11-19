@@ -16,12 +16,11 @@ class zookeeper {
     ensure => directory,
   }
 
-  homebrew::formula { 'zookeeper':
-    source => 'puppet:///modules/zookeeper/brews/zookeeper.rb',
-    before => Package['boxen/brews/zookeeper'],
-  }
-
   package { 'boxen/brews/zookeeper':
+    ensure => absent,
+  }
+  
+  package { 'zookeeper':
     ensure  => $zookeeper::config::version,
     require => [
       File["${zookeeper::config::configdir}/zoo.cfg"],
@@ -63,7 +62,7 @@ class zookeeper {
     content => template('zookeeper/dev.zookeeper.plist.erb'),
     group   => 'wheel',
     owner   => 'root',
-    require => Package['boxen/brews/zookeeper'],
+    require => Package['zookeeper'],
     notify  => Service['dev.zookeeper'],
   }
 
