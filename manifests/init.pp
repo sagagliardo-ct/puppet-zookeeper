@@ -16,12 +16,8 @@ class zookeeper {
     ensure => directory,
   }
 
-  homebrew::formula { 'zookeeper':
-    source => 'puppet:///modules/zookeeper/brews/zookeeper.rb',
-    before => Package['boxen/brews/zookeeper'],
-  }
-
   package { 'boxen/brews/zookeeper':
+    name => 'zookeeper',
     ensure  => $zookeeper::config::version,
     require => [
       File["${zookeeper::config::configdir}/zoo.cfg"],

@@ -3,7 +3,7 @@
 class zookeeper::config {
   require boxen::config
 
-  $version    = '3.4.6-boxen2'
+  $version    = '3.4.6_1'
 
   $configdir  = "${boxen::config::configdir}/zookeeper"
   $datadir    = "${boxen::config::datadir}/zookeeper"
