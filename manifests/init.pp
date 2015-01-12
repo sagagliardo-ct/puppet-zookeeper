@@ -19,7 +19,7 @@ class zookeeper {
   package { 'boxen/brews/zookeeper':
     ensure => absent,
   }
-  
+
   package { 'zookeeper':
     ensure  => $zookeeper::config::version,
     require => [

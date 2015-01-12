@@ -8,9 +8,9 @@ describe 'zookeeper' do
     }
   end
 
-  it { should include_class('homebrew') }
-  it { should include_class('zookeeper::config') }
-  it { should contain_homebrew__formula('zookeeper') }
+  it { should contain_class('homebrew') }
+  it { should contain_class('zookeeper::config') }
+  it { should contain_package('boxen/brews/zookeeper') }
   it { should contain_package('zookeeper') }
 
   it { should contain_file("/opt/boxen/config/zookeeper") }
@@ -26,7 +26,7 @@ describe 'zookeeper' do
   it { should contain_zookeeper__shim('zkCleanup') }
 
   it 'should generate content for zoo.cfg' do
-    content = catalogue.resource('file', '/opt/boxen/config/zookeeper/zoo.cfg').send(:parameters)[:content]
+    content = catalogue(:class).resource('file', '/opt/boxen/config/zookeeper/zoo.cfg').send(:parameters)[:content]
     content.should_not be_empty
   end
 
