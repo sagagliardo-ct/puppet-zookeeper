@@ -9,7 +9,7 @@ describe 'zookeeper' do
   end
 
   it { should contain_class('homebrew') }
-  it { should contain_class('zookeeper::config') }
+  it { should contain_class('boxen::config') }
   it { should contain_package('boxen/brews/zookeeper') }
   it { should contain_package('zookeeper') }
 

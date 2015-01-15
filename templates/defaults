@@ -1,1 +1,1 @@
-export ZOOCFGDIR="<%= scope.lookupvar('zookeeper::config::configdir') %>"
+export ZOOCFGDIR="<%= @configdir %>"

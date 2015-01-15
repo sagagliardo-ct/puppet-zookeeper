@@ -4,14 +4,24 @@
 #
 #   include zookeeper
 #
-class zookeeper {
-  include zookeeper::config
-  include homebrew
+class zookeeper(
+  $version     = undef,
+
+  $port        = undef,
+
+  $configdir   = undef,
+  $datadir     = undef,
+  $logdir      = undef,
+  $logerror    = undef,
+
+  $executable  = undef,
+){
+  include boxen::config
 
   file { [
-    $zookeeper::config::configdir,
-    $zookeeper::config::datadir,
-    $zookeeper::config::logdir
+    $configdir,
+    $datadir,
+    $logdir
   ]:
     ensure => directory,
   }
@@ -21,29 +31,29 @@ class zookeeper {
   }
 
   package { 'zookeeper':
-    ensure  => $zookeeper::config::version,
+    ensure  => $version,
     require => [
-      File["${zookeeper::config::configdir}/zoo.cfg"],
-      File["${zookeeper::config::configdir}/defaults"],
-      File["${zookeeper::config::configdir}/log4j.properties"],
+      File["$configdir/zoo.cfg"],
+      File["$configdir/defaults"],
+      File["$configdir/log4j.properties"],
     ],
   }
 
   # Config Files
 
-  file { "${zookeeper::config::configdir}/zoo.cfg":
+  file { "$configdir/zoo.cfg":
     content => template('zookeeper/zoo.cfg'),
-    require => File[$zookeeper::config::configdir],
+    require => File[$configdir],
   }
 
-  file { "${zookeeper::config::configdir}/defaults":
+  file { "$configdir/defaults":
     content => template('zookeeper/defaults'),
-    require => File[$zookeeper::config::configdir],
+    require => File[$configdir],
   }
 
-  file { "${zookeeper::config::configdir}/log4j.properties":
+  file { "$configdir/log4j.properties":
     content => template('zookeeper/default_log4j_properties'),
-    require => File[$zookeeper::config::configdir],
+    require => File[$configdir],
   }
 
   file { "${boxen::config::envdir}/zookeeper.sh":

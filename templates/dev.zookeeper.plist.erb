@@ -13,7 +13,7 @@
 
     <key>ProgramArguments</key>
     <array>
-      <string><%= scope.lookupvar "zookeeper::config::executable" %></string>
+      <string><%= @executable %></string>
       <string>start-foreground</string>
     </array>
 
@@ -27,13 +27,13 @@
     <string><%= scope.lookupvar "::boxen_user" %></string>
 
     <key>WorkingDirectory</key>
-    <string><%= scope.lookupvar "zookeeper::config::configdir" %></string>
+    <string><%= @configdir %></string>
 
     <key>StandardErrorPath</key>
-    <string><%= scope.lookupvar "zookeeper::config::logdir" %>/stderr.log</string>
+    <string><%= @logdir %>/stderr.log</string>
 
     <key>StandardOutPath</key>
-    <string><%= scope.lookupvar "zookeeper::config::logdir" %>/stdout.log</string>
+    <string><%= @logdir %>/stdout.log</string>
 
   </dict>
 </plist>
