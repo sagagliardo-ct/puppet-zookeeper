@@ -1,6 +1,7 @@
 ---
-  zookeeper::version: '3.4.6_1'
+  zookeeper::ensure:  'present'
 
+  zookeeper::version: '3.4.6'
   zookeeper::port: '2181'
 
   zookeeper::logerror: "%{hiera('zookeeper::logdir')}/error.log"

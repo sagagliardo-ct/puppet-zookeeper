@@ -1,10 +1,12 @@
 ---
+  zookeeper::host:        'localhost'
   zookeeper::port:        '12181'
 
   zookeeper::configdir:   "%{::boxen::config::configdir}/zookeeper"
   zookeeper::datadir:     "%{::boxen::config::datadir}/zookeeper"
   zookeeper::logdir:      "%{::boxen::config::logdir}/zookeeper"
 
+  zookeeper::servicename: "dev.zookeeper"
   zookeeper::executable:  "%{::boxen::config::homebrewdir}/bin/zkServer"
 
   zookeeper::package: "boxen/brews/zookeeper"
