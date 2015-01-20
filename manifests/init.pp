@@ -14,6 +14,9 @@ class zookeeper(
   $logdir      = undef,
   $logerror    = undef,
 
+  $package     = undef,
+  $version     = undef,
+
   $executable  = undef,
 ){
   include boxen::config
@@ -26,21 +29,24 @@ class zookeeper(
     ensure => directory,
   }
 
-  package { 'boxen/brews/zookeeper':
-    ensure => absent,
+  if $::operatingsystem == 'Darwin' {
+    homebrew::formula { 'zookeeper': }
+    ->
+    Package[$package]
   }
 
-  package { 'zookeeper':
+  package { $package:
     ensure  => $version,
     require => [
       File["$configdir/zoo.cfg"],
       File["$configdir/defaults"],
       File["$configdir/log4j.properties"],
     ],
+
+    alias => 'zookeeper'
   }
 
   # Config Files
-
   file { "$configdir/zoo.cfg":
     content => template('zookeeper/zoo.cfg'),
     require => File[$configdir],

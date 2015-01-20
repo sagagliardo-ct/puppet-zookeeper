@@ -6,3 +6,6 @@
   zookeeper::logdir:      "%{::boxen::config::logdir}/zookeeper"
 
   zookeeper::executable:  "%{::boxen::config::homebrewdir}/bin/zkServer"
+
+  zookeeper::package: "boxen/brews/zookeeper"
+  zookeeper::version: "3.4.6-boxen3"
