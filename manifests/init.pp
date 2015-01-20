@@ -6,6 +6,7 @@
 #
 class zookeeper(
   $ensure      = undef,
+  $enable      = undef,
 
   $host        = undef,
   $port        = undef,
@@ -47,11 +48,11 @@ class zookeeper(
   }
 
 
-  # Fire up our service
   ~>
-  service { $servicename:
-    ensure  => running,
-    alias   => 'zookeeper',
-  }
+  class { 'zookeeper::service':
+    ensure      => $ensure,
+    enable      => $enable,
 
+    servicename => $servicename,
+  }
 }
