@@ -22,6 +22,27 @@ class zookeeper(
   $servicename = undef,
   $executable  = undef,
 ){
+  validate_string(
+    $ensure,
+    $host,
+    $port,
+    $package,
+    $version,
+    $servicename,
+    $executable,
+  )
+
+  validate_absolute_path(
+    $configdir,
+    $datadir,
+    $logdir,
+    $logerror,
+  )
+
+  validate_bool(
+    $enable,
+  )
+
   class { 'zookeeper::config':
     ensure      => $ensure,
 
