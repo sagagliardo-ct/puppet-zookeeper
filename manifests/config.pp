@@ -1,3 +1,4 @@
+# Internal: configuration required for zookeeper
 
 class zookeeper::config(
   $ensure       = undef,
@@ -48,7 +49,7 @@ class zookeeper::config(
     ]:
       ensure => $dir_ensure;
 
-    "$configdir/zoo.cfg":
+    "${configdir}/zoo.cfg":
       ensure  => $ensure,
       content => template('zookeeper/zoo.cfg');
 

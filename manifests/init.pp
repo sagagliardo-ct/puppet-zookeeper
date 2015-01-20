@@ -46,7 +46,7 @@ class zookeeper(
   package { $package:
     ensure  => $version,
 
-    alias => 'zookeeper'
+    alias   => 'zookeeper'
   }
 
 
