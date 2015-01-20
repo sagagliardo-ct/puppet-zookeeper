@@ -21,12 +21,6 @@ class zookeeper(
   $servicename = undef,
   $executable  = undef,
 ){
-  if $::operatingsystem == 'Darwin' {
-    homebrew::formula { 'zookeeper': }
-    ->
-    Package[$package]
-  }
-
   class { 'zookeeper::config':
     ensure      => $ensure,
 
@@ -40,31 +34,24 @@ class zookeeper(
 
     servicename => $servicename,
     executable  => $executable,
+    notify      => Service['zookeeper'],
   }
 
   ~>
-  package { $package:
-    ensure  => $version,
+  class { 'zookeeper::package':
+    ensure    => $ensure,
 
-    alias   => 'zookeeper'
+    package   => $package,
+    version   => $version,
+    configdir => $configdir,
   }
 
-
-  file { "${configdir}/defaults":
-    content => template('zookeeper/defaults'),
-    require => File[$configdir],
-  }
-
-
-  # Shims for shell commands
-
-  zookeeper::shim { 'zkServer': }
-  zookeeper::shim { 'zkCli': }
-  zookeeper::shim { 'zkCleanup': }
 
   # Fire up our service
+  ~>
   service { $servicename:
     ensure  => running,
+    alias   => 'zookeeper',
   }
 
 }

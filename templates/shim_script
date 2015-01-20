@@ -1,4 +1,4 @@
 #!/usr/bin/env bash
-. "<%= scope.lookupvar('zookeeper::configdir') %>/defaults"
+. "<%= @configdir %>/defaults"
 cd "<%= @libexec %>/bin"
 ./<%= @name %>.sh "$@"

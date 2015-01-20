@@ -1,12 +1,7 @@
 require 'spec_helper'
 
 describe 'zookeeper::shim' do
-  let(:facts) do
-    {
-      :boxen_home => '/opt/boxen',
-      :boxen_user => 'testuser',
-    }
-  end
+  let(:facts) { default_test_facts }
   let(:title) { 'name' }
 
   it do
